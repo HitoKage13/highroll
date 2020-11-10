@@ -3,6 +3,7 @@ package com.highroll;
 import java.util.*;
 import java.net.URL;
 import java.net.MalformedURLException;
+
 import org.json.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -56,18 +57,17 @@ public class QueryController {
         RestTemplate r = new RestTemplate();
         List<String> returnedList = new ArrayList();
         
-        // parse API call into JSONObject and then into an array of cards
-        
+        // get the associated card from card database
         CardData cd = new CardData();
         Map<String, Query> data = cd.getCardData();
         Query q = data.get(name);
-        System.out.println(q.toString());
         String response = r.getForObject(q.toString(), String.class);
-        // parse into JSON
+
+        // parse into JSON to get all the results
         JSONObject query = new JSONObject(response);
         JSONArray cards = query.getJSONArray("cards");
         for (Object c : cards) {
-            returnedList.add(((JSONObject)c).getString("name"));
+            returnedList.add(((JSONObject)c).getString(name));
         }
 
         // return a list of the names
