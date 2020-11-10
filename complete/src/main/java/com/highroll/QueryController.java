@@ -1,8 +1,9 @@
-package com.example.springboot;
+package com.highroll;
 
 import java.util.*;
 import java.net.URL;
 import java.net.MalformedURLException;
+import org.json.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.http.ResponseEntity;
@@ -37,12 +38,30 @@ public class QueryController {
     
     // Queries the card you are searching for
     @RequestMapping(value="/data/{name}", method = RequestMethod.GET)
-    public String getCard(@PathVariable("name") String name) {
+    public List<String> getCard(@PathVariable("name") String name) {
+        // API call
         RestTemplate r = new RestTemplate();
         String response = r.getForObject(
-            "https://us.api.blizzard.com/hearthstone/cards/?name={name}&locale=en_US&access_token=USQXf5Wq3lsFR7d8p9WVy3N3Nk8t2bcqQN",
+            "https://us.api.blizzard.com/hearthstone/cards/?textFilter={name}&locale=en_US&access_token=USQXf5Wq3lsFR7d8p9WVy3N3Nk8t2bcqQN",
             String.class, name);
         
-        return response;
+        // list to return cards
+        List<String> returnedList = new ArrayList();
+        
+        // parse API call into JSONObject and then into an array of cards
+        JSONObject query = new JSONObject(response);
+        JSONArray cardList = query.getJSONArray("cards");
+
+        for (Object card : cardList) {
+            returnedList.add(((JSONObject)card).getString("name"));
+            // for testing outputs
+            // System.out.println(((JSONObject)card).getString("name"));
+        }
+
+        // for testing outputs
+        // System.out.println("");
+
+        // return a list of the names
+        return returnedList;
     }
 }

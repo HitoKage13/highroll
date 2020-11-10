@@ -1,4 +1,4 @@
-package com.example.springboot;
+package com.highroll;
 // import java.net.URL;
 // import java.net.MalformedURLException;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

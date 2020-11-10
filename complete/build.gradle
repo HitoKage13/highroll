@@ -18,6 +18,7 @@ dependencies {
 	// end::actuator[]
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	// tag::tests[]
+	compile group: 'org.json', name: 'json', version: '20180813'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
