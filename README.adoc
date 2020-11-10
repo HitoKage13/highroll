@@ -1,7 +1,7 @@
 # Hearthstone HighRoll
 
 ## Project Description
-A Hearthstone Companion App designed to assist gameplay with Discover and random card generation effects. Useful for casual players to identify the differenr choices available before they play a card to optimise their gameplay.
+A Hearthstone Companion App designed to assist gameplay with Discover and random card generation effects. Useful for casual players to identify the different choices available before they play a card to optimise their gameplay.
 
 ## Built With
 
