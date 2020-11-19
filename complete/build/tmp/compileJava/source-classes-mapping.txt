@@ -10,8 +10,10 @@ com/highroll/ManaCostDec.java
  com.highroll.ManaCostDec
 com/highroll/TextFilterDec.java
  com.highroll.TextFilterDec
-com/highroll/BaseQuery.java
- com.highroll.BaseQuery
+com/highroll/QueryController.java
+ com.highroll.QueryController
+com/highroll/AccessToken.java
+ com.highroll.AccessToken
 com/highroll/HelloController.java
  com.highroll.HelloController
 com/highroll/MinionTypeDec.java
@@ -20,9 +22,11 @@ com/highroll/Query.java
  com.highroll.Query
 com/highroll/Application.java
  com.highroll.Application
+com/highroll/KeywordDec.java
+ com.highroll.KeywordDec
 com/highroll/CardList.java
  com.highroll.CardList
 com/highroll/CardData.java
  com.highroll.CardData
-com/highroll/QueryController.java
- com.highroll.QueryController
+com/highroll/BaseQuery.java
+ com.highroll.BaseQuery

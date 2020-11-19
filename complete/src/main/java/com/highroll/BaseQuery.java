@@ -10,10 +10,15 @@ public class BaseQuery implements Query {
 
     public BaseQuery(String type, String deckClass) {
         this.api = "https://us.api.blizzard.com/hearthstone/cards/?locale=en_US";
-        this.accessToken = "&access_token=USsH2z47gFi6yvMXSAG3PhlOCMy5Cu5ouD";
+        this.accessToken = generateToken();
         this.type = type;
         this.deckClass = deckClass;
         this.format = "standard";
+    }
+
+    public String generateToken() {
+        AccessToken a = new AccessToken();
+        return "&access_token=" + a.getToken();
     }
 
     @Override
