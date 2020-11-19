@@ -11,7 +11,7 @@ export default function CardDisplay(props) {
             <Container class="bg-pink-400 sm:bg-green-400 flex flex-wrap">
                 {cardList.map((img, key) => {
                     return(
-                        <img class="bg-red-400" src={img}></img>
+                        <img className="cardImg" src={img}></img>
                     )
                 })}
             </Container>
