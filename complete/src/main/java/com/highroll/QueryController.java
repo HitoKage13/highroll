@@ -71,7 +71,7 @@ public class QueryController {
         JSONObject query = new JSONObject(response);
         JSONArray cards = query.getJSONArray("cards");
         for (Object c : cards) {
-            returnedList.add(((JSONObject)c).getString("name"));
+            returnedList.add(((JSONObject)c).getString("image"));
         }
 
         // return a list of the names

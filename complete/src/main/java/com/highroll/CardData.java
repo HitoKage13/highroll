@@ -3,7 +3,7 @@ import java.util.*;
 
 class CardData {
     private Map<String, Query> cd;
-    private SelectedClass dc = new SelectedClass("warlock");
+    private SelectedClass dc = new SelectedClass("mage");
 
     public CardData() {
         this.cd = new HashMap<String, Query>();

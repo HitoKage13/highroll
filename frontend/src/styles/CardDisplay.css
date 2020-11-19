@@ -1,0 +1,5 @@
+.cardGrid {
+    display: flex;
+    flex: wrap;
+    background-color: aquamarine;
+}
