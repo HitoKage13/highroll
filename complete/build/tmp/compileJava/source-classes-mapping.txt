@@ -20,6 +20,8 @@ com/highroll/Query.java
  com.highroll.Query
 com/highroll/Application.java
  com.highroll.Application
+com/highroll/KeywordDec.java
+ com.highroll.KeywordDec
 com/highroll/CardList.java
  com.highroll.CardList
 com/highroll/CardData.java

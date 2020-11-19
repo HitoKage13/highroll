@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/cards")
 public class QueryController {
     private final String api = "https://us.api.blizzard.com/hearthstone/cards?";
-    private final String accessToken = "?access_token=USQXf5Wq3lsFR7d8p9WVy3N3Nk8t2bcqQN";
+    private final String accessToken = "?access_token=USlXcLFM5K6dcsZZX86C8zeVED63mJnBR9";
     private static final String template = "Class: %s!";
 
 
@@ -28,7 +28,7 @@ public class QueryController {
         // API call
         RestTemplate r = new RestTemplate();
         String response = r.getForObject(
-            "https://us.api.blizzard.com/hearthstone/cards/?name={name}&locale=en_US&access_token=USsH2z47gFi6yvMXSAG3PhlOCMy5Cu5ouD",
+            "https://us.api.blizzard.com/hearthstone/cards/?name={name}&locale=en_US&access_token=USlXcLFM5K6dcsZZX86C8zeVED63mJnBR9",
             String.class, name);
 
         // parse into JSON
@@ -62,12 +62,11 @@ public class QueryController {
         Map<String, Query> data = cd.getCardData();
         Query q = data.get(name);
         String response = r.getForObject(q.toString(), String.class);
-
         // parse into JSON to get all the results
         JSONObject query = new JSONObject(response);
         JSONArray cards = query.getJSONArray("cards");
         for (Object c : cards) {
-            returnedList.add(((JSONObject)c).getString(name));
+            returnedList.add(((JSONObject)c).getString("name"));
         }
 
         // return a list of the names
