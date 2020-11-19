@@ -9,10 +9,6 @@ public class BaseQuery implements Query {
 
     public BaseQuery(String type, String deckClass) {
         this.api = "https://us.api.blizzard.com/hearthstone/cards/?locale=en_US";
-<<<<<<< HEAD
-        this.accessToken = "&access_token=USlXcLFM5K6dcsZZX86C8zeVED63mJnBR9";
-=======
->>>>>>> refresh-tokens
         this.type = type;
         this.deckClass = deckClass;
         this.format = "standard";
