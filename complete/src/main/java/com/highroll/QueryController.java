@@ -8,7 +8,7 @@ import org.json.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RestController;s
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
@@ -20,12 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/cards")
 public class QueryController {
     private final String api = "https://us.api.blizzard.com/hearthstone/cards?";
-<<<<<<< HEAD
-    private final String accessToken = "?access_token=USlXcLFM5K6dcsZZX86C8zeVED63mJnBR9";
-=======
     private AccessToken a = new AccessToken();
     private String accessToken = "?access_token=" + getToken();
->>>>>>> refresh-tokens
     private static final String template = "Class: %s!";
 
     public String getToken() {
@@ -37,11 +33,7 @@ public class QueryController {
         // API call
         RestTemplate r = new RestTemplate();
         String response = r.getForObject(
-<<<<<<< HEAD
-            "https://us.api.blizzard.com/hearthstone/cards/?name={name}&locale=en_US&access_token=USlXcLFM5K6dcsZZX86C8zeVED63mJnBR9",
-=======
             "https://us.api.blizzard.com/hearthstone/cards/?name={name}&locale=en_US&access_token=" + getToken(),
->>>>>>> refresh-tokens
             String.class, name);
 
         // parse into JSON
@@ -73,12 +65,8 @@ public class QueryController {
         CardData cd = new CardData();
         Map<String, Query> data = cd.getCardData();
         Query q = data.get(name);
-<<<<<<< HEAD
-        String response = r.getForObject(q.toString(), String.class);
-=======
         String response = r.getForObject(q.toString() + "&access_token=" + getToken(), String.class);
 
->>>>>>> refresh-tokens
         // parse into JSON to get all the results
         JSONObject query = new JSONObject(response);
         JSONArray cards = query.getJSONArray("cards");
