@@ -61,20 +61,17 @@ public class QueryController {
         // API call
         RestTemplate r = new RestTemplate();
         List<String> returnedList = new ArrayList();
-        System.out.println(this.getToken());
         // get the associated card from card database
         CardData cd = new CardData();
         Map<String, Query> data = cd.getCardData();
         Query q = data.get(name);
-        //System.out.println("kevo");
-        String response = r.getForObject(q.toString(), String.class);
+        String response = r.getForObject(q.toString() + "&access_token=" + getToken(), String.class);
 
-        //System.out.println("murph");
         // parse into JSON to get all the results
         JSONObject query = new JSONObject(response);
         JSONArray cards = query.getJSONArray("cards");
         for (Object c : cards) {
-            returnedList.add(((JSONObject)c).getString(name));
+            returnedList.add(((JSONObject)c).getString("name"));
         }
 
         // return a list of the names

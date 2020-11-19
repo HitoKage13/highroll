@@ -6,22 +6,18 @@ import java.io.InputStreamReader;
 import org.json.*;
 
 class AccessToken {
-    private String s;
     private String token;
     private String user = "62c5c2f381c1486ba1e8a090e8de526f";
     private String password = "Ut0Jkr27cOa6oGDEFUuqi7czbyAEZVwP";
     private String url = "https://us.battle.net/oauth/token";
 
     public AccessToken() {
-        this.s = generateToken();
         this.token = extractToken();
     }
 
     public String extractToken() {
-        JSONObject t = new JSONObject(this.s);
-        System.out.println(t.toString());
-        // return t.getString("access_token");
-        return "";
+        JSONObject t = new JSONObject(generateToken());
+        return t.getString("access_token");
     }
 
     public String getToken() {

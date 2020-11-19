@@ -8,6 +8,5 @@ public interface Query {
     String getFormat();
     String getDeckClass();
     String getAPI();
-    String getAccess();
     String toString();
 }
