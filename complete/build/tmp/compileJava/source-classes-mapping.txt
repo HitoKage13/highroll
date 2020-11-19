@@ -1,30 +1,39 @@
+com/highroll/HelloController.java
+ com.highroll.HelloController
+com/highroll/Application.java
+ com.highroll.Application
+com/highroll/AccessToken.java
+ com.highroll.AccessToken
+com/highroll/SelectedClass.java
+ com.highroll.SelectedClass
+com/highroll/QueryController.java
+ com.highroll.QueryController
 com/highroll/QueryDecorator.java
  com.highroll.QueryDecorator
+com/highroll/MinionTypeDec.java
+ com.highroll.MinionTypeDec
 com/highroll/Card.java
  com.highroll.Card
 com/highroll/RarityDec.java
  com.highroll.RarityDec
-com/highroll/SelectedClass.java
- com.highroll.SelectedClass
-com/highroll/ManaCostDec.java
- com.highroll.ManaCostDec
-com/highroll/TextFilterDec.java
- com.highroll.TextFilterDec
-com/highroll/BaseQuery.java
- com.highroll.BaseQuery
-com/highroll/HelloController.java
- com.highroll.HelloController
-com/highroll/MinionTypeDec.java
- com.highroll.MinionTypeDec
 com/highroll/Query.java
  com.highroll.Query
+<<<<<<< HEAD
 com/highroll/Application.java
  com.highroll.Application
 com/highroll/KeywordDec.java
  com.highroll.KeywordDec
+=======
+com/highroll/KeywordDec.java
+ com.highroll.KeywordDec
+com/highroll/ManaCostDec.java
+ com.highroll.ManaCostDec
+>>>>>>> refresh-tokens
 com/highroll/CardList.java
  com.highroll.CardList
 com/highroll/CardData.java
  com.highroll.CardData
-com/highroll/QueryController.java
- com.highroll.QueryController
+com/highroll/BaseQuery.java
+ com.highroll.BaseQuery
+com/highroll/TextFilterDec.java
+ com.highroll.TextFilterDec

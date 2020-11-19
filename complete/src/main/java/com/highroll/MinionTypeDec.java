@@ -16,7 +16,7 @@ public class MinionTypeDec extends QueryDecorator {
 
     @Override
     public String toString() {
-        return (getAPI() + getQuery() + getAccess());
+        return (getAPI() + getQuery());
     }
 
     @Override
@@ -37,10 +37,5 @@ public class MinionTypeDec extends QueryDecorator {
     @Override
     public String getAPI() {
         return query.getAPI();
-    }
-
-    @Override
-    public String getAccess() {
-        return query.getAccess();
     }
 }

@@ -3,14 +3,16 @@ import java.util.*;
 
 public class BaseQuery implements Query {
     private String api;
-    private String accessToken;
     private String type;
     private String deckClass;
     private String format;
 
     public BaseQuery(String type, String deckClass) {
         this.api = "https://us.api.blizzard.com/hearthstone/cards/?locale=en_US";
+<<<<<<< HEAD
         this.accessToken = "&access_token=USlXcLFM5K6dcsZZX86C8zeVED63mJnBR9";
+=======
+>>>>>>> refresh-tokens
         this.type = type;
         this.deckClass = deckClass;
         this.format = "standard";
@@ -23,7 +25,7 @@ public class BaseQuery implements Query {
 
     @Override
     public String toString() {
-        return (getAPI() + getQuery() + getAccess()); 
+        return (getAPI() + getQuery()); 
     }
 
     @Override
@@ -44,10 +46,5 @@ public class BaseQuery implements Query {
     @Override
     public String getAPI() {
         return api;
-    }
-
-    @Override
-    public String getAccess() {
-        return accessToken;
     }
 }
