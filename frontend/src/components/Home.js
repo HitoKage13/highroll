@@ -7,8 +7,8 @@ import { Container, Box, Input } from "@chakra-ui/react"
 
 export default function Home(props) {
     const [view, setView] = useState('class');
-    const [value, setValue] = useState('');
     const [classes, setClass] = useState(null);
+    const [value, setValue] = useState('');
     async function handleChange(searchTerm) {
         setValue(searchTerm);
     };
@@ -19,9 +19,10 @@ export default function Home(props) {
 
     return(
         <Container class="container mx-w-full">
-            <Search onChange={handleChange}></Search>
+            <Container class="bg-yellow-400 flex justify-center p-2 m-2">
+                <Search onChange={handleChange}></Search>
+            </Container>
             <p>Current Class: {classes}</p>
-            <p>Card: {value}</p>
             {view === 'class' && <ClassSelect setClass={setClass} setView={setView}></ClassSelect>}
             {view === 'cards' && <CardDisplay></CardDisplay>}
         </Container>

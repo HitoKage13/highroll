@@ -4,7 +4,35 @@
     background-color: aquamarine;
 }
 
+.selectedCard {
+    padding: 1% 0% 1% 1%;
+    margin-left: 2%;
+    width: 15%;
+    height: 15%;
+}
+
 .cardImg {
+    padding: 1% 0% 1% 1%;
+    margin-top: 2%;
+    margin-left: 2%;
+    width: 15%;
+    height: 15%;
+}
+
+.classImg {
+    padding: 1% 0% 1% 1%;
+    margin-top: 2%;
     width: 20%;
     height: 20%;
+}
+
+.card-bg {
+    background-image: url('../assets/hs-wood-border.png');
+    background-repeat: no-repeat;
+    background-size: 100% 102%;
+}
+
+.single-bg {
+    background-image: url('../assets/hs-border.png');
+    background-repeat: no-repeat;
 }

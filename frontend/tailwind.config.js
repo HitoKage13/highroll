@@ -133,7 +133,9 @@ module.exports = {
       inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
       none: 'none',
     },
-    container: {},
+    container: {
+      center: true,
+    },
     cursor: {
       auto: 'auto',
       default: 'default',
@@ -146,6 +148,11 @@ module.exports = {
     divideColor: (theme) => theme('borderColor'),
     divideOpacity: (theme) => theme('borderOpacity'),
     divideWidth: (theme) => theme('borderWidth'),
+    extend: {
+      backgroundImage: theme => ({
+        'hs-border': "url('./public/assets/hs-border.png')"
+      }),
+    },
     fill: { current: 'currentColor' },
     flex: {
       1: '1 1 0%',
