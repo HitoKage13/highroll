@@ -24,6 +24,13 @@ class CardData {
         this.cd.put("Call of the Void", new MinionTypeDec(new BaseQuery("minion", dc.getAll()), "demon"));
         this.cd.put("Bane of Doom", new MinionTypeDec(new BaseQuery("minion", dc.getAll()), "demon"));
 
+        // Madness at the Darkmoon Faire
+        this.cd.put("K'thir Ritualist", new ManaCostDec(new BaseQuery("minion", dc.getAll()), "4"));
+        this.cd.put("Cenarion Ward", new ManaCostDec(new BaseQuery("minion", dc.getAll()), "8"));
+        this.cd.put("Snack Run", new BaseQuery("spell", dc.getCurrNeutral()));
+        this.cd.put("Palm Reading", new BaseQuery("spell", dc.getCurrNeutral()));
+        this.cd.put("Magicfin", new RarityDec(new BaseQuery("minion", dc.getAll()), "legendary"));
+
         // Scholomance Academy
         this.cd.put("Wandmaker", new ManaCostDec(new BaseQuery("spell", dc.getCurrNeutral()), "1"));
         this.cd.put("Steward of Scrolls", new BaseQuery("spell", dc.getCurrNeutral()));
@@ -64,6 +71,10 @@ class CardData {
         this.cd.put("Shadow Council", new MinionTypeDec(new BaseQuery("minion", dc.getAll()), "demon"));
 
         // Galakrond's Awakening
+        this.cd.put("Chopshop Copter", new MinionTypeDec(new BaseQuery("minion", dc.getAll()), "mech"));
+        this.cd.put("Dark Prophecy", new ManaCostDec(new BaseQuery("minion", dc.getCurrNeutral()), "2"));
+        this.cd.put("Waxmancy", new KeywordDec(new BaseQuery("minion", dc.getCurrNeutral()), "battlecry"));
+        this.cd.put("Twisted Knowledge", new BaseQuery("", "warlock"));
 
         // Descent of Dragons
         // is this all classes?
@@ -91,7 +102,7 @@ class CardData {
         this.cd.put("Vulpera Scoundrel", new BaseQuery("spell", dc.getCurrNeutral()));
         this.cd.put("Hunter's Pack", new BaseQuery("", "hunter"));
         this.cd.put("Dune Sculptor", new BaseQuery("minion", "mage"));
-        this.cd.put("Lightforged Crusader", new BaseQuery("spell", dc.getAll()));
+        this.cd.put("Puzzle Box of Yogg-Saron", new BaseQuery("spell", dc.getAll()));
         this.cd.put("Raid the Sky Temple", new BaseQuery("spell", "mage"));
         this.cd.put("Pharaoh Cat", new KeywordDec(new BaseQuery("minion", dc.getAll()), "reborn"));
         this.cd.put("Whirlkick Master", new KeywordDec(new BaseQuery("", dc.getCurrNeutral()), "combo"));

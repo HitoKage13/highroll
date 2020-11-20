@@ -36,16 +36,26 @@ public class QueryController {
         // API call
         RestTemplate r = new RestTemplate();
         String response = r.getForObject(
-            "https://us.api.blizzard.com/hearthstone/cards/?textFilter={name}&locale=en_US&access_token=" + getToken(),
+            "https://us.api.blizzard.com/hearthstone/cards/?textFilter={name}&collectible=1&locale=en_US&access_token=" + getToken(),
             String.class, name);
 
         // parse into JSON
         JSONObject query = new JSONObject(response);
-        // JSONArray card = query.getJSONArray("cards");
-        JSONObject card = query.getJSONArray("cards").getJSONObject(0);
-        JSONObject json = new JSONObject().put("name", card.getString("name"))
-        .put("image", card.getString("image"));
-        return json.toString();
+        JSONArray cards = query.getJSONArray("cards");
+        List<JSONObject> jList = new ArrayList();
+        int count = 0;
+        for (Object c : cards) {
+            JSONObject json = new JSONObject().put("name", ((JSONObject)c).getString("name"))
+            .put("image", ((JSONObject)c).getString("image"));
+            jList.add(json);
+            count += 1;
+            if (count >= 10) {
+                break;
+            }
+        }
+        
+        // JSONObject card = query.getJSONArray("cards").getJSONObject(0);
+        return jList.toString();
         // return card.toString();
     }
 
@@ -64,10 +74,10 @@ public class QueryController {
     
     // Queries the card you are searching for
     @RequestMapping(value="/data/{name}", method = RequestMethod.GET)
-    public List<String> fetchCardChoices(@PathVariable("name") String name) {
+    public String fetchCardChoices(@PathVariable("name") String name) {
         // API call
         RestTemplate r = new RestTemplate();
-        List<String> returnedList = new ArrayList();
+        List<JSONObject> returnedList = new ArrayList();
         // get the associated card from card database
         CardData cd = new CardData();
         Map<String, Query> data = cd.getCardData();
@@ -78,10 +88,10 @@ public class QueryController {
         JSONObject query = new JSONObject(response);
         JSONArray cards = query.getJSONArray("cards");
         for (Object c : cards) {
-            returnedList.add(((JSONObject)c).getString("image"));
+            returnedList.add((JSONObject)c);
         }
 
         // return a list of the names
-        return returnedList;
+        return returnedList.toString();
     }
 }

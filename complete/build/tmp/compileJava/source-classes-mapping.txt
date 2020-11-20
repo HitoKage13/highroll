@@ -26,7 +26,7 @@ com/highroll/KeywordDec.java
  com.highroll.KeywordDec
 com/highroll/CardList.java
  com.highroll.CardList
-com/highroll/CardData.java
- com.highroll.CardData
 com/highroll/QueryController.java
  com.highroll.QueryController
+com/highroll/CardData.java
+ com.highroll.CardData

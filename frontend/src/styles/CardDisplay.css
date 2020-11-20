@@ -32,6 +32,11 @@
     background-size: 100% 102%;
 }
 
+.divider {
+    min-width: 100%;
+    height: 0.5%;
+}
+
 .single-bg {
     background-image: url('../assets/hs-border.png');
     background-repeat: no-repeat;

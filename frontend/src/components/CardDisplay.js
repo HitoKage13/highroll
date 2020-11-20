@@ -2,38 +2,47 @@ import React, { useState, useEffect } from 'react';
 import "../styles/main.css";
 import "../styles/CardDisplay.css";
 import Search from './Search';
-import images from '../data/testimages.js';
+// import images from '../data/testimages.js';
 import { Button, Container } from "@chakra-ui/react"
 
 export default function CardDisplay(props) {
-    const [selectedCard, setSelectedCard] = useState(null);
-    const [updateSelCard, setUpdateCard] = useState(false);
-    const [cardList, setCards] = useState(images);
+    // search cards
+    const [cardList, setCards] = useState([]);
+    const [selectedCard, setSelected] = useState(null);
+    
+    // query
+    const [query, setQuery] = useState([]);
+
+    // update useEffects
+    const [updateCardList, setUpdateCards] = useState(false);
+    const [updateQuery, setUpdateQuery] = useState(false);
+
+    // search bar
     const [value, setValue] = useState(null);
+
     async function handleChange(searchTerm) {
         setValue(searchTerm);
+        setTimeout(function () {
+            setUpdateCards(!updateCardList);
+        }, 300);
     };
 
+    // updates on search
     useEffect(() => {
-        // const proxy = "https://cors-anywhere.herokuapp.com/";
         const res = fetch('http://localhost:8080/cards/search/' + value,
             {
                 crossDomain: true,
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    /* "Access-Control-Allow-Origin": "*",
-                    "Access-Control-Expose-Headers": "Content-Length, X-JSON",
-                    "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
-                    "Access-Control-Allow-Headers": "*", */
                 }
             }
         ).then(response => {
             if (response.status === 200) {
                 if (value !== null) {
                     response.json().then(data => {
-                        setSelectedCard(data.image);
-                        setUpdateCard(!updateSelCard);
+                        setCards(data);
+                        console.log(data);
                     });
                 }
             } else {
@@ -43,10 +52,48 @@ export default function CardDisplay(props) {
         .catch(function (error) {
             console.log('Looks like there was a problem: ', error);
         });
-    }, [updateSelCard]);
+    }, [updateCardList]);
 
+    // updates for queries
+    useEffect(() => {
+        const res = fetch('http://localhost:8080/cards/data/' + selectedCard,
+            {
+                crossDomain: true,
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            }
+        ).then(response => {
+            if (response.status === 200) {
+                if (value !== null) {
+                    response.json().then(data => {
+                        setQuery(data);
+                        console.log(data);
+                    });
+                }
+            } else if (response.status === 500) {
+                setQuery([]);
+                console.log("Fail");
+            }
+        })
+            .catch(function (error) {
+                console.log('Looks like there was a problem: ', error);
+            });
+    }, [updateQuery]);
+
+    // updates the searched cards
     function update() {
-        setUpdateCard(!updateSelCard);
+        setUpdateCards(true);
+    }
+
+    // triggers the query search
+    function triggerQuery(card) {
+        setCards([card]);
+        setValue('');
+        setSelected(card.name);
+        setUpdateQuery(!updateQuery);
+        // e.preventDefault();
     }
 
     return(
@@ -58,14 +105,20 @@ export default function CardDisplay(props) {
                 Select
             </Button>
             <p>Card: {value}</p>
-            <Container class="container bg-red-400 flex justify-center">
-                <img class="selectedCard" src={selectedCard}></img>
-            </Container>
-            <Container class="container flex flex-wrap card-bg">
-                {cardList.map((img, key) => {
+            <p>Target: {selectedCard}</p>
+            <Container class="container flex flex-wrap justify-center">
+                {cardList.map((card, key) => {
                     return(
-                        <img class="cardImg" src={img}></img>
-                    )
+                        <img class="selectedCard" onClick={() => triggerQuery(card)} value={card.name} src={card.image}/>
+                    );
+                })}
+            </Container>
+            {query.length > 0 && <img class="divider" src="./assets/hs-divider.png" />}
+            <Container class="container flex flex-wrap">
+                {query.map((card, key) => {
+                    return (
+                        <img class="selectedCard" src={card.image} />
+                    );
                 })}
             </Container>
         </Container>
