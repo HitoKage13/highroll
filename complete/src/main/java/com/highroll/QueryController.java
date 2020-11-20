@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/cards")
 public class QueryController {
     private final String api = "https://us.api.blizzard.com/hearthstone/cards?";
@@ -28,18 +30,23 @@ public class QueryController {
         return this.a.getToken();
     }
 
-    // don't need this function
-    public String getCard(String name) {
+    // searches for a single card
+    @RequestMapping(value="/search/{name}", method = RequestMethod.GET)
+    public String getCard(@PathVariable("name") String name) {
         // API call
         RestTemplate r = new RestTemplate();
         String response = r.getForObject(
-            "https://us.api.blizzard.com/hearthstone/cards/?name={name}&locale=en_US&access_token=" + getToken(),
+            "https://us.api.blizzard.com/hearthstone/cards/?textFilter={name}&locale=en_US&access_token=" + getToken(),
             String.class, name);
 
         // parse into JSON
         JSONObject query = new JSONObject(response);
+        // JSONArray card = query.getJSONArray("cards");
         JSONObject card = query.getJSONArray("cards").getJSONObject(0);
-        return card.getString("name");
+        JSONObject json = new JSONObject().put("name", card.getString("name"))
+        .put("image", card.getString("image"));
+        return json.toString();
+        // return card.toString();
     }
 
     // Test query

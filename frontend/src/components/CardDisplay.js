@@ -1,23 +1,62 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import "../styles/main.css";
 import "../styles/CardDisplay.css";
 import Search from './Search';
 import images from '../data/testimages.js';
-import { Container, Grid, Input} from "@chakra-ui/react"
+import { Button, Container } from "@chakra-ui/react"
 
 export default function CardDisplay(props) {
-    const [selectedCard, setSelectedCard] = useState("https://d15f34w2p8l1cc.cloudfront.net/hearthstone/e14df9d01b2410548835ba1e2eb8d8592c230f581be911f89db0c492d2ced252.png")
+    const [selectedCard, setSelectedCard] = useState(null);
+    const [updateSelCard, setUpdateCard] = useState(false);
     const [cardList, setCards] = useState(images);
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState(null);
     async function handleChange(searchTerm) {
         setValue(searchTerm);
     };
+
+    useEffect(() => {
+        // const proxy = "https://cors-anywhere.herokuapp.com/";
+        const res = fetch('http://localhost:8080/cards/search/' + value,
+            {
+                crossDomain: true,
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    /* "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Expose-Headers": "Content-Length, X-JSON",
+                    "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+                    "Access-Control-Allow-Headers": "*", */
+                }
+            }
+        ).then(response => {
+            if (response.status === 200) {
+                if (value !== null) {
+                    response.json().then(data => {
+                        setSelectedCard(data.image);
+                        setUpdateCard(!updateSelCard);
+                    });
+                }
+            } else {
+                console.log("Fail");
+            }
+        })
+        .catch(function (error) {
+            console.log('Looks like there was a problem: ', error);
+        });
+    }, [updateSelCard]);
+
+    function update() {
+        setUpdateCard(!updateSelCard);
+    }
 
     return(
         <Container class="container p-1 m-1">
             <Container class="container flex justify-center">
                 <Search onChange={handleChange}></Search>
             </Container>
+            <Button backgroundColor="red" onClick={update}>
+                Select
+            </Button>
             <p>Card: {value}</p>
             <Container class="container bg-red-400 flex justify-center">
                 <img class="selectedCard" src={selectedCard}></img>

@@ -1,8 +1,7 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import "../styles/main.css";
 import "../styles/CardDisplay.css";
-import images from '../data/testimages.js';
-import { Container, Box, Input } from "@chakra-ui/react"
+import { Container } from "@chakra-ui/react"
 
 export default function ClassSelect(props) {
     const [numba, setNum] = useState(10);
@@ -51,16 +50,16 @@ export default function ClassSelect(props) {
         <Container class="container p-2 m-2">
             <p>Class: {numba} </p>
             <Container class="flex flex-wrap p-2 m-2 card-bg">
-                <img className="classImg" src="./assets/portraits/demon-hunter-illidan.png" onClick={() => chooseClass(0)}></img>
-                <img className="classImg" src="./assets/portraits/druid-malfurion.png" onClick={() => chooseClass(1)}></img>
-                <img className="classImg" src="./assets/portraits/hunter-rexxar.png" onClick={() => chooseClass(2)}></img>
-                <img className="classImg" src="./assets/portraits/mage-jaina.png" onClick={() => chooseClass(3)}></img>
-                <img className="classImg" src="./assets/portraits/paladin-uther.png" onClick={() => chooseClass(4)}></img>
-                <img className="classImg" src="./assets/portraits/priest-anduin.png" onClick={() => chooseClass(5)}></img>
-                <img className="classImg" src="./assets/portraits/rogue-valeera.png" onClick={() => chooseClass(6)}></img>
-                <img className="classImg" src="./assets/portraits/shaman-thrall.png" onClick={() => chooseClass(7)}></img>
-                <img className="classImg" src="./assets/portraits/warlock-guldan.png" onClick={() => chooseClass(8)}></img>
-                <img className="classImg" src="./assets/portraits/warrior-garrosh.png" onClick={() => chooseClass(9)}></img>
+                <img className="classImg" src="./assets/portraits/demon-hunter-illidan.png" alt="dh" onClick={() => chooseClass(0)}></img>
+                <img className="classImg" src="./assets/portraits/druid-malfurion.png" alt="druid" onClick={() => chooseClass(1)}></img>
+                <img className="classImg" src="./assets/portraits/hunter-rexxar.png" alt="hunter" onClick={() => chooseClass(2)}></img>
+                <img className="classImg" src="./assets/portraits/mage-jaina.png" alt="mage" onClick={() => chooseClass(3)}></img>
+                <img className="classImg" src="./assets/portraits/paladin-uther.png" alt="paladin" onClick={() => chooseClass(4)}></img>
+                <img className="classImg" src="./assets/portraits/priest-anduin.png" alt="priest" onClick={() => chooseClass(5)}></img>
+                <img className="classImg" src="./assets/portraits/rogue-valeera.png" alt="rogue" onClick={() => chooseClass(6)}></img>
+                <img className="classImg" src="./assets/portraits/shaman-thrall.png" alt="shaman" onClick={() => chooseClass(7)}></img>
+                <img className="classImg" src="./assets/portraits/warlock-guldan.png" alt="warlock" onClick={() => chooseClass(8)}></img>
+                <img className="classImg" src="./assets/portraits/warrior-garrosh.png" alt="warrior" onClick={() => chooseClass(9)}></img>
 
             </Container>
         </Container>
